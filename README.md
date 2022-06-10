@@ -1,3 +1,8 @@
+# SynesthesAI
+Deep Learning Project to create images from lyrics.
+
+------------------------------------------------------------
+
 # Data analysis
 - Document here the project: synesthesai
 - Description: Project Description
