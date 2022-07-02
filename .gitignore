@@ -6,3 +6,12 @@ raw_data/
 *.csv
 **/__pycache__/
 .env
+trials/
+CLIP/
+taming-transformers/
+steps/
+taming/
+*.png
+vqgan_imagenet_f16_16384.ckpt
+vqgan_imagenet_f16_16384.yaml
+.vscode
