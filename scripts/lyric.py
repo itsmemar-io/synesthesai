@@ -10,6 +10,9 @@ from nltk.cluster.util import cosine_distance
 import numpy as np
 import networkx as nx
 
+from wordcloud import WordCloud
+
+
 def clean(text):
     ignore = ',.:;?!\''
     music_parts = ['Intro','Outro','Pre-Chorus 1','Verse 1','Verse 1','Verse 1','Verse 1','Verse','Chorous',]
@@ -85,7 +88,7 @@ def generate_summary(text, top_n=1):
 
     #Rank sentences in similarity martix
     sentence_similarity_graph = nx.from_numpy_array(sentence_similarity_martix)
-    scores = nx.pagerank(sentence_similarity_graph)
+    scores = nx.pagerank_numpy(sentence_similarity_graph)
 
     #Sort the rank and pick top sentences
     ranked_sentence = sorted(((scores[i],s) for i,s in enumerate(sentences)), reverse=True)
@@ -99,6 +102,11 @@ def summarizeLyrics(lyrics):
     clean_text = clean(lyrics)
     summary = generate_summary(clean_text)
     res = [clean_text, summary]
-    print(res[0])
-    print(res[1])
     return res
+
+def buildWordmap(text):
+    wordcloud = WordCloud(max_font_size=75, max_words=50, background_color="black").generate(text)
+    plt.figure()
+    plt.imshow(wordcloud, interpolation="bilinear")
+    plt.axis("off")
+    plt.savefig('wordmap.png', bbox_inches = 'tight')
